@@ -1,14 +1,14 @@
-CREATE DATABASE tetrabd;
+CREATE DATABASE demonstracaodb;
 
-
--- Foi utilizado o usuario tetra e senha tetra para acesso ao db
+-- Script testado no mysql
+-- Foi utilizado o usuario testeuser e senha testeuser para acesso ao db
 -- No arquivo de configuracao do hibernate.xml localizando na pasta src do projeto
 
-CREATE USER 'tetra' IDENTIFIED BY 'tetra';
+CREATE USER 'testeuser' IDENTIFIED BY 'testeuser';
 
-GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON tetrabd.* TO 'tetra';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON demonstracaodb.* TO 'testeuser';
 
-USE tetrabd;
+USE demonstracaodb;
 
 create table cliente (
    codigo_cliente MEDIUMINT NOT NULL AUTO_INCREMENT,
