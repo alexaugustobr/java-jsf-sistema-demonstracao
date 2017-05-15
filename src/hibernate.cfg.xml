@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/tetrabd</property>
-		<property name="hibernate.connection.username">tetra</property>
-		<property name="hibernate.connection.password">tetra</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/demonstracaodb</property>
+		<property name="hibernate.connection.username">testeuser</property>
+		<property name="hibernate.connection.password">testeuser</property>
 
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>		
 		<property name="show_sql">false</property>
