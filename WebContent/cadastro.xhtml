@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="base.css" />
+	<h:outputScript library="js" name="jquery.js"/>
+	<h:outputScript library="js" name="jquerym.js"/>
+	<title>
+		Teste
+	</title>
+		<f:metadata>
+			<f:viewParam 
+				name="codigo"
+				value="#{cadastroClienteBean.cliente}" />
+		</f:metadata>
+</h:head>
+		<script type="text/javascript">
+			jQuery(function($){
+			   //$("#data").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+			   $("input.telefone").mask("(999) 9999-9999");
+			});
+		</script>
+<h:body>
+
+	<div class="main">
+	<header>
+	<ul>
+		<li><p>Sistema de Demonstração</p></li>
+	</ul>
+	</header>
+	<div class="linha-horizontal" />
+		<aside>
+			<ul>
+				<li><p>Menu</p></li>
+				<li><h:link outcome="cadastro">Cadastro</h:link></li>
+				<li><h:link outcome="consulta">Consulta</h:link></li>
+			</ul>
+		</aside>
+	<div class="linha-vertical" />
+	<section>
+	
+
+
+		<h:form id="frm">
+
+		<h1>#{cadastroClienteBean.editando ? 'Editando Cliente' : 'Novo Cliente'}</h1> 
+		
+			<h:messages 
+				showDetail="false" 
+				showSummary="true"
+				styleClass="form-messages" 
+				errorClass="error" 
+				infoClass="info" />
+
+			<h:panelGrid columns="2" styleClass="form-grid"
+				columnClasses="label, campo">
+
+				<h:outputLabel value="Nome" />
+				<h:inputText 
+					id="nome"
+					requiredMessage="O campo Nome é necessário."
+					maxlength="70"
+					size="50"
+					value="#{cadastroClienteBean.cliente.nome}"
+					validatorMessage="Só é permitido caracteres de A a Z no campo Nome."
+					required="true" 
+					label="Nome">
+					<f:validateRegex pattern="[a-zA-Z\s\p{L}]+" />
+					<f:validator validatorId="com.tetrasoft.teste.validator.ClienteNome" />
+				</h:inputText>
+				 
+	 			<h:outputLabel value="Email" />
+				<h:inputText 
+					size="50"
+					requiredMessage="O campo Email é necessário."
+					maxlength="70" 
+					value="#{cadastroClienteBean.cliente.email}"
+					required="true" 
+					validatorMessage="E-mail inserido é inválido."
+					label="Email">
+					<f:validateRegex
+					pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</h:inputText>
+				
+				<h:outputLabel value="Endereço" />
+				<h:inputText 
+					validatorMessage="Só é permitido caracteres de A a Z e 0 a 9 no campo Endereço."
+					size="50"
+					maxlength="100" 
+					value="#{cadastroClienteBean.cliente.endereco}"
+					label="Endereço">
+					<f:validateRegex pattern="[a-zA-Z\d\s\p{L}]+" />
+					<f:validator validatorId="com.tetrasoft.teste.validator.Endereco" />
+				</h:inputText>
+				
+				<h:outputLabel value="Telefone" />
+				<h:inputText 
+					styleClass="telefone"
+					size="20" 
+					maxlength="20"
+					value="#{cadastroClienteBean.cliente.telefone}"
+					label="Telefone">
+					<!--<f:validateRegex pattern="^([\d]+)?$" />  --><!--  "^[+]?[0-9]+$" -->
+				</h:inputText>
+				
+				<h:outputLabel value="Sexo" />
+				<h:panelGroup>
+					<h:selectOneRadio
+						id="sexoCheckBox"
+						label="Sexo"
+						value="#{cadastroClienteBean.cliente.sexo}" >
+						<f:selectItem itemValue="M" itemLabel="Masculino" />
+   						<f:selectItem itemValue="F" itemLabel="Feminino" />	
+					</h:selectOneRadio>
+				</h:panelGroup>
+				
+				<h:outputLabel value="Newsletter" />
+				<h:panelGroup>
+					<h:selectBooleanCheckbox 
+						id="newsCheckbox"
+						value="#{cadastroClienteBean.cliente.newsletter}"
+						/>
+					<h:outputLabel 
+						value="Sim" 
+						for="newsCheckbox" />
+				</h:panelGroup>
+				
+				
+				<h:outputLabel />
+				<h:commandButton 
+					value="#{cadastroClienteBean.editando ? 'Salvar' : 'Cadastrar'}"
+					action="#{cadastroClienteBean.cadastrar}" />
+			</h:panelGrid>
+
+		</h:form>
+		
+
+		</section>
+		</div>
+		<footer>
+		
+		</footer>
+		
+		
+		
+	</h:body>
+</html>

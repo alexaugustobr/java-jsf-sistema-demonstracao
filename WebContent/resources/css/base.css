@@ -1,0 +1,109 @@
+@CHARSET "UTF-8";
+* {
+	margin-left: 0px;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+}
+
+header {
+	display: block;
+}
+
+
+header p {
+	margin-top:20px;
+	font-size: 20px;
+}
+
+header ul li{
+	display: inline-block;
+	
+	list-style-type: none;
+	margin-left:-20px;
+	margin-right:20px;
+	line-height: 30px;
+}
+
+header ul li a{
+	text-decoration: none;
+	color:black;
+}
+
+
+
+
+aside {
+	float:left;
+}
+
+
+
+
+
+.main{
+	height: auto;
+	width: auto;
+	float:left;
+	
+}
+
+.linha-horizontal{
+      clear:top;
+      width: 1300px; /* Line width */
+      background-color: black; /* Line color */
+      height: 1px; /* Override in-line if you want specific height. */
+       /* Causes the line to float to left of content. 
+        You can instead use position:absolute or display:inline-block
+        if this fits better with your design */
+}
+
+.linha-vertical{
+      width: 1px; /* Line width */
+      background-color: black; /* Line color */
+      height: 500px; /* Override in-line if you want specific height. */
+      float: left; /* Causes the line to float to left of content. 
+        You can instead use position:absolute or display:inline-block
+        if this fits better with your design */
+}
+
+aside ul {
+
+}
+aside ul li{
+	list-style-type: none;
+	margin-left:-20px;
+	margin-right:20px;
+	line-height: 30px;
+}
+
+aside ul li a{
+	text-decoration: none;
+	color:black;
+}
+
+aside ul li a:hover{
+	color:blue;
+}
+
+section {
+	float:left;
+	margin:10px
+}
+
+
+
+ul.form-messages {
+	padding-left: 20px;
+}
+
+
+.form-messages .error {
+	color: #e81f1f;
+}
+
+.form-messages .info {
+	color: #156b2a;
+}

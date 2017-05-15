@@ -1,0 +1,59 @@
+#tabela.nome {
+	text-align: left;
+}
+
+td.email {
+	text-align: center;
+}
+
+td.telefone { 
+	text-align: center;
+}
+
+td.acoes { 
+	text-align: center;
+}
+
+
+.grid td {
+	padding: 3px;
+}
+
+.grid td, .grid th {
+	padding: 3px;
+}
+
+.grid .cabecalho {
+	
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	background-color: #3f82bf;
+	
+}
+
+.grid .cor-sim {
+	background-color: #bad2f8;
+}
+
+.grid .cor-nao {
+	background-color: withe;
+}
+
+
+
+.form-grid {
+	margin-top: 8px;
+}
+
+
+.form-grid .label {
+	font-weight: bold;
+	text-align: right;
+	padding: 0px 5px;
+}
+
+.form-grid .campo {
+	padding-right: 5px;
+	width: auto;
+}

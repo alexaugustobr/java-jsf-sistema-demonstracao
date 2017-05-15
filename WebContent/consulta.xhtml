@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="base.css" />
+	<h:outputStylesheet library="css" name="tabela.css" />
+	
+	<h:outputScript library="js" name="jquery.js"/>
+	<h:outputScript library="js" name="jquerym.js"/>
+	<title>
+		Teste
+	</title>
+</h:head>
+		<script type="text/javascript">
+			jQuery(function($){
+			   //$("#data").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+			   $("input.telefone").mask("(999) 9999-9999");
+			});
+		</script>
+<h:body>
+	<div class="main">
+	<header>
+	<ul>
+		<li><p>Sistema de Demonstração</p></li>
+	</ul>
+	</header>
+	<div class="linha-horizontal" />
+		<aside>
+			<ul>
+				<li><p>Menu</p></li>
+				<li><h:link outcome="cadastro">Cadastro</h:link></li>
+				<li><h:link outcome="consulta">Consulta</h:link></li>
+			</ul>
+		</aside>
+	<div class="linha-vertical" />
+	<section>
+		<f:metadata>
+			<f:viewParam 
+				name="codigo"
+				value="#{cadastroClienteBean.cliente}" />
+		</f:metadata>
+				
+		<h:form id="frm">
+			<h1>Pesquisa de Clientes</h1>
+			<h:panelGrid columns="2" styleClass="form-grid"
+				columnClasses="label, campo,campo">
+				
+			<h:outputLabel value="Nome"/>
+				<h:inputText
+					
+					id="ipnutnome"
+					value="#{consultaClienteBean.clientePesquisa.nome}" 
+					size="70" immediate="true"
+					valueChangeListener="#{consultaClienteBean.pesquisarEventoNome}">
+	                <f:ajax immediate="true" event="keyup" execute="ipnutemail ipnutnome" render="frm:tabela"/>
+
+				</h:inputText>
+				<h:outputLabel value="Email" />
+				<h:inputText 
+					id="ipnutemail"
+					value="#{consultaClienteBean.clientePesquisa.email}" 
+					size="70" immediate="true"
+					valueChangeListener="#{consultaClienteBean.pesquisarEventoEmail}">
+	                <f:ajax immediate="true" event="keyup" execute="ipnutemail ipnutnome" render="frm:tabela"/>
+				</h:inputText>
+
+				</h:panelGrid>
+				<h:messages 
+					id="msg" 
+					showDetail="false" 
+					showSummary="true"
+					styleClass="form-messages" 
+					errorClass="error" 
+					infoClass="info" />
+			<h1>Resultados</h1>
+			<hr/>
+			
+
+			<h:dataTable
+				id="tabela"  
+				var="cliente"
+				value="#{consultaClienteBean.clientes}" 
+				width="100%" 
+				styleClass="grid"
+				headerClass="cabecalho" 
+				rowClasses="cor-sim, cor-nao"
+				columnClasses="nome,email,telefone,acoes">
+				
+			
+				<h:column>
+					<f:facet 
+						name="header">
+						Nome
+				</f:facet>
+
+					<h:outputText 
+						value="#{cliente.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet 
+						name="header">
+						Email
+				</f:facet>
+
+					<h:outputText 
+						value="#{cliente.email}" />
+				</h:column>
+				<h:column>
+					<f:facet 
+						name="header">
+						Telefone
+				</f:facet>
+
+					<h:outputText 
+						styleClass="telefone"
+						value="#{cliente.telefone}" />
+				</h:column>
+				<h:column>
+				<f:facet 
+					name="header">
+					Ações
+				</f:facet>
+					<h:link 
+						outcome="cadastro">
+						Editar
+						<f:param 
+							name="codigo" 
+							value="#{cliente.codigo}" />
+					</h:link>
+					
+				</h:column>
+			</h:dataTable>
+			
+
+
+		</h:form>
+		
+
+		</section>
+		</div>
+		<footer>
+		
+		</footer>
+		
+		
+		
+	</h:body>
+</html>
+
+
+
+
+

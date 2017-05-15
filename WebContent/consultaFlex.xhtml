@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="baseflex.css" />
+	<h:outputScript library="js" name="jquery.js" />
+	<h:outputScript library="js" name="jquerym.js" />
+	<title>Teste</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script type="text/javascript">
+		jQuery(function($) {
+			//$("#data").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+			//<li><h:graphicImage value="/imagens/tetra.png"/></li>
+			$("input.itelefone").mask("(999) 9999-9999");
+		});
+	</script>
+</h:head>
+
+<h:body>
+
+	<header>
+		<div class="container">
+			<ul class="flex-outer">
+				<li><p>Sistema de Demonstração</p></li>
+			</ul>
+		</div>
+	</header>
+	<div class="horizontal-line"></div>
+	<div class="main">
+
+		<aside>
+			<ul class="flex-outer">
+				<li><p>Menu</p></li>
+				<li><h:link outcome="cadastroFlex">Cadastro</h:link></li>
+				<li><h:link outcome="consultaFlex">Consulta</h:link></li>
+			</ul>
+		<div class="horizontal-line"></div>
+		</aside>
+		<div class="vertical-line"></div>
+
+		<div class="container">
+
+
+
+			<h:form id="frm">
+				<ul class="flex-outer">
+
+					<li><h:messages styleClass="flex-items-default form-messages"
+							showDetail="false" showSummary="true" errorClass="error"
+							infoClass="info" /></li>
+
+					<li><h:outputLabel value="Nome" /> <h:inputText
+							id="ipnutnome"
+							value="#{consultaClienteBean.clientePesquisa.nome}" 
+							immediate="true"
+							valueChangeListener="#{consultaClienteBean.pesquisarEventoNome}">
+							<f:ajax immediate="true" event="keyup"
+								execute="ipnutemail ipnutnome" render="frm:tabela" />
+
+						</h:inputText></li>
+
+					<li><h:outputLabel value="Email" /> <h:inputText
+							id="ipnutemail"
+							value="#{consultaClienteBean.clientePesquisa.email}" 
+							immediate="true"
+							valueChangeListener="#{consultaClienteBean.pesquisarEventoEmail}">
+							<f:ajax immediate="true" event="keyup"
+								execute="ipnutemail ipnutnome" render="frm:tabela" />
+						</h:inputText></li>
+
+					<li>
+						
+						
+						
+						 <h:dataTable id="tabela" var="cliente"
+							value="#{consultaClienteBean.clientes}" width="100%"
+							styleClass="grid" headerClass="cabecalho"
+							rowClasses="cor-sim, cor-nao"
+							columnClasses="nome,email,telefone,acoes">
+
+
+							<h:column>
+								<f:facet name="header">
+						Nome
+				</f:facet>
+
+								<h:outputText value="#{cliente.nome}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+						Email
+				</f:facet>
+
+								<h:outputText value="#{cliente.email}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+						Telefone
+				</f:facet>
+
+								<h:outputText styleClass="telefone" value="#{cliente.telefone}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+					Ações
+				</f:facet>
+								<h:link outcome="cadastroFlex">
+						Editar
+						<f:param name="codigo" value="#{cliente.codigo}" />
+								</h:link>
+
+							</h:column>
+						</h:dataTable>
+					</li>
+
+				</ul>
+
+			</h:form>
+		</div>
+
+
+	</div>
+	<footer>
+		<div class="horizontal-line" />
+	</footer>
+
+
+
+</h:body>
+</html>

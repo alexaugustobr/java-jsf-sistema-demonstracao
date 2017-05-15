@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="baseflex.css" />
+	<h:outputScript library="js" name="jquery.js" />
+	<h:outputScript library="js" name="jquerym.js" />
+	<title>Teste</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script type="text/javascript">
+		jQuery(function($) {
+			//$("#data").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+			//$("#tel").mask("(999) 9999-9999");
+			
+			//via id e form
+			//$("[id='frm:tel1']").mask("(999) 9999-9999");
+			
+			//via styleclass
+			$("input.itel1").mask("(999) 9999-9999");
+			
+			
+		});
+	</script>
+		<f:metadata>
+			<f:viewParam 
+				name="codigo"
+				value="#{cadastroClienteBean.cliente}" />
+		</f:metadata>
+</h:head>
+
+<h:body>
+
+	<header>
+	<div class="container">
+	<ul class="flex-outer">
+		<li><p>Sistema de Demonstração</p></li>
+	</ul>
+	</div>
+	</header>
+	<div class="horizontal-line">
+		
+	</div>
+	<div class="main">
+		
+		<aside>
+			<ul class="flex-outer">
+				<li><p>Menu</p></li>
+				<li><h:link outcome="cadastroFlex">Cadastro</h:link></li>
+				<li><h:link outcome="consultaFlex">Consulta</h:link></li>
+			</ul>
+			
+		</aside>
+		<div class="vertical-line">
+		
+		</div>
+
+		<div class="container">
+			
+
+
+			<h:form id="frm">
+				<ul class="flex-outer">
+				
+					<li><h:messages styleClass="flex-items-default form-messages"
+						showDetail="false" showSummary="true" errorClass="error"
+						infoClass="info" />
+					</li>
+
+				<!--  				<h:panelGrid columns="2" styleClass="flex-items-default form-grid" -->
+				<!--  				columnClasses="label, campo"> -->
+
+				
+					<li><h:outputLabel value="Nome" /> <h:inputText
+							styleClass="itext" id="nome"
+							requiredMessage="O campo Nome é necessário."
+							value="#{cadastroClienteBean.cliente.nome}"
+							validatorMessage="Só é permitido caracteres de A a Z no campo Nome."
+							required="true" label="Nome">
+							<f:validateRegex pattern="[a-zA-Z\s\p{L}]+" />
+							<f:validator
+								validatorId="com.tetrasoft.teste.validator.ClienteNome" />
+						</h:inputText><p id="nomeerro">a</p></li>
+					<li><h:outputLabel value="Email" /> <h:inputText
+							styleClass="itext" requiredMessage="O campo Email é necessário."
+							maxlength="70" value="#{cadastroClienteBean.cliente.email}"
+							required="true" validatorMessage="E-mail inserido é inválido."
+							label="Email">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</h:inputText></li>
+					<li><h:outputLabel value="Endereço" /> 
+					<h:inputText
+							styleClass="itext"
+							validatorMessage="Só é permitido caracteres de A a Z e 0 a 9 no campo Endereço."
+							value="#{cadastroClienteBean.cliente.endereco}" label="Endereço">
+							<f:validateRegex pattern="[a-zA-Z\d\s\p{L}]+" />
+							<f:validator validatorId="com.tetrasoft.teste.validator.Endereco" />
+						</h:inputText>
+						</li>
+					<li><h:outputLabel value="Telefone" /> <h:inputText
+							styleClass="itel1 itext"
+							value="#{cadastroClienteBean.cliente.telefone}" label="Telefone">
+						</h:inputText>
+						
+						</li>
+
+					<li><h:outputLabel value="Sexo" />
+
+						<ul class="flex-inner">
+							<li>
+								<h:selectOneRadio id="sexoCheckBox" label="Sexo"
+									value="#{cadastroClienteBean.cliente.sexo}">
+									<li><f:selectItem itemValue="M" itemLabel="Masculino" /></li>
+									<li><f:selectItem itemValue="F" itemLabel="Feminino" /></li>
+								</h:selectOneRadio>
+							</li>
+						</ul>
+						
+					</li>
+					
+					
+					
+					<li>
+					<h:outputLabel value="Newsletter" />
+						<ul class="flex-inner">
+						
+								<li><h:selectBooleanCheckbox id="newsCheckbox"
+									value="#{cadastroClienteBean.cliente.newsletter}" /> 
+									<h:outputLabel
+									value="Sim" for="newsCheckbox" />
+									</li>
+						</ul>
+									
+					</li>
+					
+
+
+					<li><h:outputLabel/>
+						<h:commandButton
+							styleClass="button"
+							value="#{cadastroClienteBean.editando ? 'Salvar' : 'Cadastrar'}"
+							onclick="return validate()"
+							action="#{cadastroClienteBean.cadastrar}" />
+					</li>
+
+				</ul>
+
+				<!--  			</h:panelGrid> -->
+			</h:form>
+		</div>
+		
+		
+	</div>
+	<footer> <div class="horizontal-line"/> </footer>
+
+
+
+</h:body>
+</html>
